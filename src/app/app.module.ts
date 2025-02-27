@@ -3,7 +3,6 @@ import {
   BrowserModule,
   provideClientHydration,
 } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AdminModule } from './admin/admin.module';
@@ -12,7 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { BaseComponent } from './base/base.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,8 +23,13 @@ import { BaseComponent } from './base/base.component';
     UiModule,
     ToastrModule.forRoot(),
     NgxSpinnerModule,
+    HttpClientModule,
   ],
-  providers: [provideClientHydration(), provideAnimationsAsync()],
+  providers: [
+    provideClientHydration(),
+    provideAnimationsAsync(),
+    { provide: 'baseUrl', useValue: 'https://localhost:7072/api', multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
