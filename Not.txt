@@ -1,0 +1,1 @@
+Bir fonksiyonun başka bir fonksiyon içersine argüman olarak koymaya callback denir.

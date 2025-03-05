@@ -1,7 +1,16 @@
 {
   "ExpandedNodes": [
     "",
-    "\\src"
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\admin",
+    "\\src\\app\\admin\\components",
+    "\\src\\app\\admin\\components\\products",
+    "\\src\\app\\directives",
+    "\\src\\app\\directives\\admin",
+    "\\src\\app\\services",
+    "\\src\\app\\services\\common",
+    "\\src\\app\\services\\common\\models"
   ],
   "PreviewInSolutionExplorer": false
 }
