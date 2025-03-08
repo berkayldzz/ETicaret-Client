@@ -6,11 +6,12 @@
     "\\src\\app\\admin",
     "\\src\\app\\admin\\components",
     "\\src\\app\\admin\\components\\products",
+    "\\src\\app\\admin\\components\\products\\create",
+    "\\src\\app\\dialogs",
+    "\\src\\app\\dialogs\\file-upload-dialog",
     "\\src\\app\\directives",
-    "\\src\\app\\directives\\admin",
-    "\\src\\app\\services",
-    "\\src\\app\\services\\common",
-    "\\src\\app\\services\\common\\models"
+    "\\src\\app\\directives\\admin"
   ],
+  "SelectedNode": "\\src\\app\\admin\\components\\products\\create\\create.component.ts",
   "PreviewInSolutionExplorer": false
 }
