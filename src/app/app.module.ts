@@ -11,7 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule, provideHttpClient, withFetch } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { LoginComponent } from './ui/components/login/login.component';
 import { GoogleLoginProvider, GoogleSigninButtonModule, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
@@ -43,6 +43,7 @@ import { HttpErrorHandlerInterceptorService } from './services/common/http-error
       provideClientHydration(),
       provideAnimationsAsync(),
     { provide: "baseUrl", useValue: "https://localhost:7072/api", multi: true },
+    provideHttpClient(withFetch()),
     {
       provide: "SocialAuthServiceConfig",
       useValue: {

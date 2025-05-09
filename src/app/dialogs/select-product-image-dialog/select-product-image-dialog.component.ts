@@ -27,7 +27,7 @@ export class SelectProductImageDialogComponent extends BaseDialog<SelectProductI
     super(dialogRef)
   }
   images: List_Product_Image[];
- async ngOnInit() {
+  async ngOnInit() {
 
     this.spinner.show(SpinnerType.BallAtom);
     this.images = await this.productService.readImages(this.data as string, () => this.spinner.hide(SpinnerType.BallAtom));
@@ -59,7 +59,17 @@ export class SelectProductImageDialogComponent extends BaseDialog<SelectProductI
       }
     })
   }
+
+  
+  showCase(imageId: string) {
+    this.spinner.show(SpinnerType.BallAtom);
+
+    this.productService.changeShowcaseImage(imageId, this.data as string, () => {
+      this.spinner.hide(SpinnerType.BallAtom);
+    });
+  }
 }
+
 
 export enum SelectProductImageState {
   Close
