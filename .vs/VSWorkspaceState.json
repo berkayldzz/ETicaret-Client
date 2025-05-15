@@ -5,9 +5,10 @@
     "\\src\\app",
     "\\src\\app\\directives",
     "\\src\\app\\directives\\common",
-    "\\src\\app\\services",
-    "\\src\\app\\services\\common"
+    "\\src\\app\\ui",
+    "\\src\\app\\ui\\components",
+    "\\src\\app\\ui\\components\\baskets"
   ],
-  "SelectedNode": "\\src\\app\\directives\\common\\dynamic-load-component.directive.ts",
+  "SelectedNode": "\\src\\app\\ui\\components\\baskets\\baskets.component.html",
   "PreviewInSolutionExplorer": false
 }
