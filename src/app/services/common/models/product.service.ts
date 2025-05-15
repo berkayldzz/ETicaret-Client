@@ -1,19 +1,16 @@
-import { Injectable } from '@angular/core';
-import { HttpClientService } from '../http-client.service';
-import { Create_Product } from '../../../contracts/create_product';
 import { HttpErrorResponse } from '@angular/common/http';
-import { List_Product } from '../../../contracts/list_product';
+import { Injectable } from '@angular/core';
 import { firstValueFrom, Observable } from 'rxjs';
+import { Create_Product } from '../../../contracts/create_product';
+import { List_Product } from '../../../contracts/list_product';
 import { List_Product_Image } from '../../../contracts/list_product_image';
-
+import { HttpClientService } from '../http-client.service';
 
 @Injectable({
   providedIn: 'root'
 })
-//Özelleştirdiğimiz httpClient servisi çağırıyoruz.
 export class ProductService {
   constructor(private httpClientService: HttpClientService) { }
-
 
   create(product: Create_Product, successCallBack?: () => void, errorCallBack?: (errorMessage: string) => void) {
     this.httpClientService.post({
@@ -29,29 +26,21 @@ export class ProductService {
             message += `${_v}<br>`;
           });
         });
-        errorCallBack(message);  // errorCallBack(message); çağrıldığında, message değişkeni doğrudan errorMessage parametresine atanır.
+        errorCallBack(message);
       });
   }
 
+  async read(page: number = 0, size: number = 5, successCallBack?: () => void, errorCallBack?: (errorMessage: string) => void): Promise<{ totalProductCount: number; products: List_Product[] }> {
+    const promiseData: Promise<{ totalProductCount: number; products: List_Product[] }> = this.httpClientService.get<{ totalProductCount: number; products: List_Product[] }>({
+      controller: "products",
+      queryString: `page=${page}&size=${size}`
+    }).toPromise();
 
-
-  // totalCount: number; products: List_Product[] burada api'den gelecek verinin formatını belirtmiş olduk.
-
-  async read(page: number = 0, size: number = 5, successCallBack?: () => void, errorCallBack?: (errorMessage: string) => void)
-    : Promise<{ totalCount: number; products: List_Product[] }> {
-    const promiseData: Promise<{ totalCount: number; products: List_Product[] }> =
-      this.httpClientService.get<{ totalCount: number; products: List_Product[] }>({
-        controller: "products",
-        queryString: `page=${page}&size=${size}`
-      }).toPromise();
-
-    promiseData.then(d => successCallBack())  // promise başarılı ise 
-      .catch((errorResponse: HttpErrorResponse) => errorCallBack(errorResponse.message))// promise başarısız ise 
+    promiseData.then(d => successCallBack())
+      .catch((errorResponse: HttpErrorResponse) => errorCallBack(errorResponse.message))
 
     return await promiseData;
-
   }
-
 
   async delete(id: string) {
     const deleteObservable: Observable<any> = this.httpClientService.delete<any>({
@@ -60,7 +49,6 @@ export class ProductService {
 
     await firstValueFrom(deleteObservable);
   }
-
 
   async readImages(id: string, successCallBack?: () => void): Promise<List_Product_Image[]> {
     const getObservable: Observable<List_Product_Image[]> = this.httpClientService.get<List_Product_Image[]>({
@@ -83,4 +71,13 @@ export class ProductService {
     successCallBack();
   }
 
+  async changeShowcaseImage(imageId: string, productId: string, successCallBack?: () => void): Promise<void> {
+    const changeShowcaseImageObservable = this.httpClientService.get({
+      controller: "products",
+      action: "ChangeShowcaseImage",
+      queryString: `imageId=${imageId}&productId=${productId}`
+    });
+    await firstValueFrom(changeShowcaseImageObservable);
+    successCallBack();
+  }
 }

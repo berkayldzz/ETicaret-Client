@@ -2,7 +2,6 @@ import { ViewChild } from '@angular/core';
 import { AfterViewInit } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BaseComponent, SpinnerType } from '../../../../base/base.component';
 import { List_Product } from '../../../../contracts/list_product';
@@ -10,6 +9,7 @@ import { SelectProductImageDialogComponent } from '../../../../dialogs/select-pr
 import { AlertifyService, MessageType, Position } from '../../../../services/admin/alertify.service';
 import { DialogService } from '../../../../services/common/dialog.service';
 import { ProductService } from '../../../../services/common/models/product.service';
+import { MatTableDataSource } from '@angular/material/table';
 
 declare var $: any;
 
@@ -34,13 +34,13 @@ export class ListComponent extends BaseComponent implements OnInit {
 
   async getProducts() {
     this.showSpinner(SpinnerType.BallAtom);
-    const allProducts: { totalCount: number; products: List_Product[] } = await this.productService.read(this.paginator ? this.paginator.pageIndex : 0, this.paginator ? this.paginator.pageSize : 5, () => this.hideSpinner(SpinnerType.BallAtom), errorMessage => this.alertifyService.message(errorMessage, {
+    const allProducts: { totalProductCount: number; products: List_Product[] } = await this.productService.read(this.paginator ? this.paginator.pageIndex : 0, this.paginator ? this.paginator.pageSize : 5, () => this.hideSpinner(SpinnerType.BallAtom), errorMessage => this.alertifyService.message(errorMessage, {
       dismissOthers: true,
       messageType: MessageType.Error,
       position: Position.TopRight
     }))
     this.dataSource = new MatTableDataSource<List_Product>(allProducts.products);
-    this.paginator.length = allProducts.totalCount;
+    this.paginator.length = allProducts.totalProductCount;
   }
 
   addProductImages(id: string) {
