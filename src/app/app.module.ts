@@ -16,10 +16,11 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { LoginComponent } from './ui/components/login/login.component';
 import { GoogleLoginProvider, GoogleSigninButtonModule, SocialAuthServiceConfig, SocialLoginModule } from '@abacritt/angularx-social-login';
 import { HttpErrorHandlerInterceptorService } from './services/common/http-error-handler-interceptor.service';
+import { DynamicLoadComponentDirective } from './directives/common/dynamic-load-component.directive';
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, DynamicLoadComponentDirective],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -31,8 +32,13 @@ import { HttpErrorHandlerInterceptorService } from './services/common/http-error
     HttpClientModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: () => localStorage.getItem("accessToken"),
-        allowedDomains: ["localhost:7072"]
+        tokenGetter: () => {
+          if (typeof window !== 'undefined') {
+            return localStorage.getItem('accessToken');
+          }
+          return null;
+        },
+        allowedDomains: ['localhost:7072']
       }
     }),
     SocialLoginModule,
