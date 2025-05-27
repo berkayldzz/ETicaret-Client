@@ -3,12 +3,9 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\directives",
-    "\\src\\app\\directives\\common",
     "\\src\\app\\ui",
     "\\src\\app\\ui\\components",
     "\\src\\app\\ui\\components\\baskets"
   ],
-  "SelectedNode": "\\src\\app\\ui\\components\\baskets\\baskets.component.html",
   "PreviewInSolutionExplorer": false
 }

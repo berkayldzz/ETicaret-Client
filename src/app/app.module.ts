@@ -49,6 +49,7 @@ import { DynamicLoadComponentDirective } from './directives/common/dynamic-load-
       provideClientHydration(),
       provideAnimationsAsync(),
     { provide: "baseUrl", useValue: "https://localhost:7072/api", multi: true },
+    { provide: "baseSignalRUrl", useValue: "https://localhost:7131/", multi: true },
     {
       provide: "SocialAuthServiceConfig",
       useValue: {
