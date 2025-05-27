@@ -3,9 +3,9 @@
     "",
     "\\src",
     "\\src\\app",
-    "\\src\\app\\ui",
-    "\\src\\app\\ui\\components",
-    "\\src\\app\\ui\\components\\baskets"
+    "\\src\\app\\constants",
+    "\\src\\app\\services"
   ],
+  "SelectedNode": "\\src\\app\\app.module.ts",
   "PreviewInSolutionExplorer": false
 }
