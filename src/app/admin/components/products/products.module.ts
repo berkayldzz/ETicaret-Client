@@ -11,33 +11,25 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { DeleteDirective } from '../../../directives/admin/delete.directive';
-import { DeleteDialogComponent } from '../../../dialogs/delete-dialog/delete-dialog.component';
-import { MatDialogModule } from '@angular/material/dialog';
 import { FileUploadModule } from '../../../services/common/file-upload/file-upload.module';
 import { DialogModule } from '../../../dialogs/dialog.module';
+import { DeleteDirectiveModule } from '../../../directives/admin/delete.directives.module';
 
 @NgModule({
   declarations: [
     ProductsComponent,
     CreateComponent,
-    ListComponent,
-    DeleteDirective
-    
+    ListComponent
   ],
   imports: [
     CommonModule,
-    RouterModule.forChild([{ path: '', component: ProductsComponent }]),
-    MatSidenavModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatTableModule,
-    MatPaginatorModule,
+    RouterModule.forChild([
+      { path: "", component: ProductsComponent }
+    ]),
+    MatSidenavModule, MatFormFieldModule, MatInputModule, MatButtonModule, MatTableModule, MatPaginatorModule,
+    DialogModule,
     FileUploadModule,
-    DialogModule
-  ],
+    DeleteDirectiveModule
+  ]
 })
-export class ProductsModule {}
-
-
-// Burada ProductModule içinde tanımlı olan declarations kısmındaki componentlerde imports yaptığımız harici modulleri kullan demiş oluyoruz.
+export class ProductsModule { }
